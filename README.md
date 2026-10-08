@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SKYTXT
 
-## Getting Started
+A weather app with a slightly strange personality.
 
-First, run the development server:
+SKYTXT started as a simple idea: instead of making another weather dashboard full of cards and graphs, I wanted the weather to feel more like a small digital magazine page. The interface uses a scrapbook/editorial style with rough shapes, muted colors, handwritten notes, and weather illustrations.
+
+**Live:** https://skytxt.vercel.app
+
+## What it does
+
+- Search for weather by city
+- Detect your current location using the browser's geolocation
+- Show the detected city using reverse geocoding
+- Display current temperature and feels-like temperature
+- Show humidity, wind speed, and pressure
+- Show a 7-day forecast
+- View the selected location on an interactive map
+- Keep recently searched cities in the browser
+- Work on desktop and mobile screens
+
+## Tech stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- MapLibre GL JS
+- OpenFreeMap
+- Open-Meteo
+- Nominatim / OpenStreetMap
+- Vercel
+
+The project does not require a paid API key for its core features.
+
+## APIs
+
+### Open-Meteo
+
+Weather data comes from Open-Meteo.
+
+It provides the current weather conditions and daily forecast data used throughout the app.
+
+https://open-meteo.com/
+
+### Open-Meteo Geocoding
+
+City searches are converted into latitude and longitude using Open-Meteo's geocoding service.
+
+https://open-meteo.com/en/docs/geocoding-api
+
+### OpenStreetMap / Nominatim
+
+When the user chooses "Use My Location", the browser provides the coordinates and Nominatim is used to turn those coordinates into a readable city and country name.
+
+https://nominatim.openstreetmap.org/
+
+### OpenFreeMap
+
+The map uses MapLibre GL JS with OpenFreeMap tiles, so there is no map API key required for the project.
+
+https://openfreemap.org/
+
+## Running it locally
+
+You will need Node.js installed.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/rajoshreedhar/SKYTXT.git
+cd SKYTXT
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```text
+skytxt/
+├── app/
+│   ├── page.tsx
+│   ├── WeatherMap.tsx
+│   └── ...
+├── public/
+│   └── maplibre/
+├── package.json
+├── next.config.ts
+├── tsconfig.json
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I wanted the visual style to feel less like a typical weather SaaS dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The design is built around:
 
-## Deploy on Vercel
+- cream paper-like surfaces
+- deep cabernet and dusty mauve accents
+- dark backgrounds
+- editorial typography
+- rough borders and offset shadows
+- handwritten-style notes
+- weather doodles
+- asymmetrical layouts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The goal was to make the interface feel like a small weather publication rather than a collection of UI cards.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## What I learned
+
+This project was mainly an exercise in putting several pieces together into one working application.
+
+Some of the things I worked with were:
+
+- building a Next.js application from scratch
+- working with external REST APIs
+- converting city names into coordinates
+- using browser geolocation
+- reverse geocoding coordinates
+- handling asynchronous API requests
+- integrating MapLibre into Next.js
+- dealing with a web worker setup for MapLibre
+- storing data in localStorage
+- making a responsive interface
+- deploying a project through GitHub and Vercel
+
+## Limitations
+
+SKYTXT is a small project rather than a production weather service.
+
+Weather data depends on the availability of the external APIs, and browser location depends on the user allowing location access.
+
+The project is also intentionally kept simple. There is no user account system or backend database; recent cities are stored locally in the browser.
+
+## Deployment
+
+The project is deployed on Vercel and connected to the GitHub repository.
+
+Every push to the main branch can trigger a new deployment.
+
+## License
+
+This project is mainly a personal portfolio and learning project.
