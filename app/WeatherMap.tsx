@@ -34,9 +34,6 @@ export default function WeatherMap({
           longitude,
           zoom: 10,
         }}
-        longitude={longitude}
-        latitude={latitude}
-        zoom={10}
         style={{
           width: "100%",
           height: "420px",
